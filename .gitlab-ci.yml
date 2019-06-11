@@ -1,0 +1,13 @@
+---
+image: alpine:latest
+
+stages:
+  - verify
+  - build
+  - test
+  - docs
+
+  - publish
+
+include:
+  - local: .gitlab-templates/rtd-ci.yml
