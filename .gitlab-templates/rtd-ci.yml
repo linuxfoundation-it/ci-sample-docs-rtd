@@ -1,5 +1,4 @@
 ---
-
 build:
   stage: docs
   image: python:3
@@ -8,5 +7,5 @@ build:
     - pip install sphinx-rtd-theme
     - pip install recommonmark
   script:
-    - cd doc ; make html
+    - cd docs ; make html
     - mv build/html/ ../public/
