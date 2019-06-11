@@ -1,0 +1,25 @@
+---
+image: python:3
+
+tox:
+  stage: verify
+  script:
+    - pip install tox
+    - tox
+
+build:
+  stage: build
+  script:
+    - pip install setuptools,wheel
+    - python setup.py sdist bdist_wheel
+
+publish:
+  stage: publish
+  variables:
+      TWINE_USERNAME: $PYPI_TEST_USERNAME
+      TWINE_PASSWORD: $PYPI_TEST_PASSWORD
+  script:
+    - pip install twine
+    - twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+  only:
+    - master
